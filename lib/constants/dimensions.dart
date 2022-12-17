@@ -15,7 +15,6 @@ class MyDimensions {
       RoundedRectangleBorder(borderRadius: borderAll);
 
   static const SizedBox vSpacing = SizedBox(height: 16.0);
-  static const SizedBox vSpacingS = SizedBox(height: 8.0);
   static const SizedBox hSpacing = SizedBox(height: 8.0);
   // static const SizedBox hSpacingS = SizedBox(height: 8.0);
 }

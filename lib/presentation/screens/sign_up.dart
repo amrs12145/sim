@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
 import 'package:sim/buisness_logic/validators.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
-import 'package:sim/presentation/widgets/form.dart';
 import 'package:sim/presentation/widgets/password_field.dart';
 import 'package:sim/routes.dart';
 import '../../constants/dimensions.dart';
@@ -12,9 +11,9 @@ import '../widgets/input_field.dart';
 import '../widgets/screen_divider.dart';
 import '../widgets/wave_background.dart';
 
-class LoginScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
-  LoginScreen({super.key});
+  SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,47 +31,50 @@ class LoginScreen extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Welcome \nBack!',
+                  'Create \nAccount!',
                   style: Theme.of(context).textTheme.headline1,
                 ),
                 const Spacer(),
+                const MyTextField(
+                  hint: 'Student Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                ),
+                MyDimensions.vSpacing,
+                const MyTextField(
+                  hint: 'Student ID',
+                  prefixIcon: Icon(Icons.person_outline),
+                ),
+                MyDimensions.vSpacing,
                 MyTextField(
-                  prefixIcon: const Icon(Icons.email),
-                  hint: 'example@abc.com',
-                  suffixIcon: const Icon(Icons.check),
+                  hint: 'Student Mail',
+                  prefixIcon: const Icon(Icons.person_outline),
                   validator: MyValidators.validateEmail(),
                 ),
                 MyDimensions.vSpacing,
                 const PasswordField(),
                 MyDimensions.vSpacing,
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forget password',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
+                const PasswordField(),
                 MyDimensions.vSpacing,
                 MyButtons.primary(
-                  child: const Text('Login'),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       Get.to(MyRoutes.homeScreen);
                       // Get.to(() => MyRoutes.homeScreen);
                     }
                   },
+                  child: const Text('Sign Up'),
                 ),
                 const MyScreenDivider(text: 'or'),
                 MyButtons.secondary(
-                  child: const Text('Sign up'),
                   onPressed: () {
-                    Get.to(MyRoutes.signUpScreen);
-                    // Get.to(() => MyRoutes.signUpScreen);
+                    Get.to(MyRoutes.loginScreen);
+                    // Get.to(() => MyRoutes.loginScreen);
                   },
+                  child: const Text('Log in'),
                 ),
-                // Very important when using Column.
                 MyDimensions.vSpacing,
               ],
             ),

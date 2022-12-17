@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sim/routes.dart';
 
-import '../widgets/screenDivider.dart';
+import '../widgets/screen_divider.dart';
 import '../../constants/colors.dart';
 import '../../constants/dimensions.dart';
 
@@ -15,23 +17,42 @@ class HomeScreen extends StatelessWidget {
         padding: MyDimensions.paddingAll,
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/sim_logo.png',
+            MyDimensions.vSpacing,
+            Align(
+              alignment: Alignment.topCenter,
+              child: Image.asset(
+                'assets/images/sim_logo.png',
+                width: MediaQuery.of(context).size.width * 0.60,
+              ),
             ),
             MyDimensions.vSpacing,
-            Text('Welcome Sim'),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'Welcome to SIM',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+            ),
+            const Align(
+              alignment: Alignment.center,
+              child: Text('Software Industry and Multimedia Systems'),
+            ),
+            const Spacer(),
             MyDimensions.vSpacing,
             ElevatedButton(
-              onPressed: () {},
-              child: Text('login'),
+              onPressed: () {
+                Get.to(() => MyRoutes.loginScreen);
+              },
+              child: const Text('login'),
             ),
-            MyDimensions.vSpacingS,
-            MyScreenDivider(text: 'or'),
-            MyDimensions.vSpacingS,
+            const MyScreenDivider(text: 'or'),
             ElevatedButton(
-              onPressed: () {},
-              child: Text('sign up'),
+              onPressed: () {
+                Get.to(() => MyRoutes.signUpScreen);
+              },
+              child: const Text('sign up'),
             ),
+            MyDimensions.vSpacing,
           ],
         ),
       ),
