@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sim/buisness_logic/validators.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
-import 'package:sim/presentation/widgets/form.dart';
 import 'package:sim/presentation/widgets/password_field.dart';
 import 'package:sim/routes.dart';
 import '../../constants/dimensions.dart';
@@ -21,10 +20,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColors.primary,
-      appBar: AppBar(
-        backgroundColor: MyColors.primary,
-        elevation: 0,
-      ),
+      appBar: AppBar(),
       body: WaveBackground(
         firstColor: MyColors.primary,
         child: Padding(
@@ -32,6 +28,7 @@ class LoginScreen extends StatelessWidget {
           child: Form(
             key: formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Welcome \nBack!',
@@ -39,8 +36,8 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 MyTextField(
-                  prefixIcon: const Icon(Icons.email),
                   hint: 'example@abc.com',
+                  prefixIcon: const Icon(Icons.email),
                   suffixIcon: const Icon(Icons.check),
                   validator: MyValidators.validateEmail(),
                 ),
@@ -49,9 +46,14 @@ class LoginScreen extends StatelessWidget {
                 MyDimensions.vSpacing,
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forget password',
-                    style: Theme.of(context).textTheme.bodyText1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(MyRoutes.resetScreen);
+                    },
+                    child: Text(
+                      'Forget password',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                 ),
                 MyDimensions.vSpacing,

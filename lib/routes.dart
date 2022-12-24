@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sim/presentation/screens/reset/new_password.dart';
+import 'package:sim/presentation/screens/reset/reset.dart';
+import 'package:sim/presentation/screens/reset/verify.dart';
 
 import 'presentation/screens/home.dart';
 import 'presentation/screens/login.dart';
@@ -8,4 +11,7 @@ class MyRoutes {
   static const Widget homeScreen = HomeScreen();
   static Widget loginScreen = LoginScreen();
   static Widget signUpScreen = SignUpScreen();
+  static const Widget resetScreen = ResetScreen();
+  static const Widget verificationScreen = VerificationScreen();
+  static const Widget newPasswordScreen = NewPasswordScreen();
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:sim/buisness_logic/validators.dart';
+import 'package:sim/core/extensions.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/presentation/widgets/password_field.dart';
 import 'package:sim/routes.dart';
@@ -20,10 +21,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: MyColors.primary,
-      appBar: AppBar(
-        backgroundColor: MyColors.primary,
-        elevation: 0,
-      ),
+      appBar: AppBar(),
       body: WaveBackground(
         firstColor: MyColors.primary,
         child: Padding(
@@ -34,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Create \nAccount!',
+                  'Create \naccount!'.capitalizeAllWord(),
                   style: Theme.of(context).textTheme.headline1,
                 ),
                 const Spacer(),

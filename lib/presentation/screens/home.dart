@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 'Welcome to SIM',
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.headline3,
               ),
             ),
             const Align(
