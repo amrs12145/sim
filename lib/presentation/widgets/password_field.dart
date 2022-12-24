@@ -19,7 +19,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return MyTextField(
       obscureText: _obscureText,
       validator: MyValidators.validatePassword(),
-      prefixIcon: const Icon(Icons.lock),
+      prefixIcon: const Icon(Icons.lock_outlined),
       hint: '********',
       suffixIcon: InkWell(
         onTap: () {

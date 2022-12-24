@@ -28,7 +28,8 @@ class MyTextField extends StatelessWidget {
       maxLength: maxLength,
       obscureText: obscureText,
       decoration: InputDecoration(
-        prefixIcon: prefixIcon,
+        // prefixIcon: prefixIcon,
+        icon: prefixIcon,
         hintText: hint,
         suffixIcon: suffixIcon,
       ),
