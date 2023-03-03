@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sim/routes.dart';
 
+import '../../data/net/users.dart';
 import '../widgets/screen_divider.dart';
 import '../../constants/colors.dart';
 import '../../constants/dimensions.dart';
@@ -11,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UsersApi().loadUsers();
     return Scaffold(
       backgroundColor: MyColors.primary,
       body: Padding(
