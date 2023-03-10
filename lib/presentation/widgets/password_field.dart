@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:sim/buisness_logic/validators.dart';
+import 'package:sim/core/validators.dart';
 import 'package:sim/core/extensions.dart';
 
 import 'input_field.dart';
 
-class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
+class AppPasswordField extends StatefulWidget {
+  const AppPasswordField({this.hint, super.key});
+  final String? hint;
 
   @override
-  State<PasswordField> createState() => _PasswordFieldState();
+  State<AppPasswordField> createState() => _AppPasswordFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordField> {
+class _AppPasswordFieldState extends State<AppPasswordField> {
   bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     return MyTextField(
       obscureText: _obscureText,
-      validator: MyValidators.validatePassword(),
-      prefixIcon: const Icon(Icons.lock_outlined),
-      hint: '********',
+      validator: AppValidators.validatePassword(),
+      prefixIcon: const Icon(Icons.lock),
+      hint: widget.hint ?? 'Password',
       suffixIcon: InkWell(
         onTap: () {
           setState(

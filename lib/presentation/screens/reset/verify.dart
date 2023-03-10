@@ -14,10 +14,10 @@ class VerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: MyColors.primary,
+      backgroundColor: AppColors.primary,
       appBar: AppBar(),
       body: Padding(
-        padding: MyDimensions.paddingAll,
+        padding: AppDimensions.paddingAll,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -25,23 +25,23 @@ class VerificationScreen extends StatelessWidget {
               'Enter verification \ncode'.capitalizeAllWord(),
               style: Theme.of(context).textTheme.headline1,
             ),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
             const Text('We \'ve sent  the verification code\nto your email.'),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
             const MyOTPForm(),
             const Spacer(),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
             ElevatedButton(
               onPressed: () {
                 Get.to(MyRoutes.newPasswordScreen);
               },
               style: ElevatedButton.styleFrom(
-                side: const BorderSide(color: MyColors.onPrimary),
-                foregroundColor: MyColors.primary,
+                side: const BorderSide(color: AppColors.onPrimary),
+                foregroundColor: AppColors.primary,
               ),
               child: const Text('Verify'),
             ),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
             Center(
               child: TextButton(
                 onPressed: () {},
@@ -49,7 +49,7 @@ class VerificationScreen extends StatelessWidget {
                 child: const Text('Resend code after 1:33'),
               ),
             ),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
             Center(
               child: Text(
                 'Did not receive emails? Check your spam filters,',
@@ -71,7 +71,7 @@ class VerificationScreen extends StatelessWidget {
                 ),
               ),
             ),
-            MyDimensions.vSpacing,
+            AppDimensions.vSpacing,
           ],
         ),
       ),

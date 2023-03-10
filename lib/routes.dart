@@ -3,12 +3,12 @@ import 'package:sim/presentation/screens/reset/new_password.dart';
 import 'package:sim/presentation/screens/reset/reset.dart';
 import 'package:sim/presentation/screens/reset/verify.dart';
 
-import 'presentation/screens/home.dart';
+import 'presentation/screens/landing.dart';
 import 'presentation/screens/login.dart';
 import 'presentation/screens/sign_up.dart';
 
 class MyRoutes {
-  static const Widget homeScreen = HomeScreen();
+  static const Widget homeScreen = LandingScreen();
   static Widget loginScreen = LoginScreen();
   static Widget signUpScreen = SignUpScreen();
   static const Widget resetScreen = ResetScreen();

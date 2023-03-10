@@ -9,7 +9,7 @@ class WaveBackground extends StatelessWidget {
   const WaveBackground({
     Key? key,
     required this.firstColor,
-    this.secondColor = MyColors.background,
+    this.secondColor = AppColors.background,
     required this.child,
   }) : super(key: key);
 

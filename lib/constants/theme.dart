@@ -7,47 +7,61 @@ getMyThemeData() {
   return ThemeData(
     // primaryColor: MyColors.primary,
     colorScheme: const ColorScheme.light(
-      primary: MyColors.primary,
+      primary: AppColors.primary,
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontWeight: FontWeight.bold,
-        fontSize: 32,
+        fontSize: 30,
+        //madetommy
       ),
       headline2: TextStyle(
-        // color: Colors.grey,
-        // fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontWeight: FontWeight.w600,
         fontSize: 30,
       ),
-      headline3: TextStyle(
-        color: Colors.white,
-        fontWeight: FontWeight.bold,
-        fontSize: 18,
+      subtitle1: TextStyle(
+        color: Color(0xff3B8DFE),
+        fontSize: 17,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.grey,
+        fontSize: 14,
       ),
       bodyText1: TextStyle(
-        color: MyColors.primary,
+        color: AppColors.primary,
       ),
-      bodyText2: TextStyle(
-        color: MyColors.onPrimary,
-      ),
+      bodyText2: TextStyle(),
     ),
-    appBarTheme: const AppBarTheme(elevation: 0),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      foregroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
+      toolbarHeight: 30.0,
+    ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: MyColors.primary,
-        backgroundColor: MyColors.onPrimary,
+        foregroundColor: AppColors.onPrimary,
+        backgroundColor: AppColors.primary,
         fixedSize: const Size(double.maxFinite, 48.0),
-        shape: MyDimensions.roundBorderAll,
+        shape: AppDimensions.roundBorderAll,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: MyColors.onPrimary,
-        backgroundColor: MyColors.primary,
-        fixedSize: const Size(double.maxFinite, 48.0),
-        shape: MyDimensions.roundBorderAll,
+        foregroundColor: AppColors.primary,
+        padding: EdgeInsets.zero,
+        // backgroundColor: AppColors.primary,
+        // fixedSize: const Size(double.maxFinite, 48.0),
+        // shape: AppDimensions.roundBorderAll,
       ),
+    ),
+
+    inputDecorationTheme: const InputDecorationTheme(
+      prefixStyle: TextStyle(),
+      fillColor: Colors.black,
     ),
   );
 }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:sim/buisness_logic/validators.dart';
+import 'package:sim/core/validators.dart';
 import 'package:sim/core/extensions.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/presentation/widgets/password_field.dart';
 import 'package:sim/routes.dart';
+import '../../app_router.dart';
 import '../../constants/dimensions.dart';
 
 import '../../constants/colors.dart';
 import '../widgets/input_field.dart';
 import '../widgets/screen_divider.dart';
-import '../widgets/wave_background.dart';
 
 class SignUpScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -18,45 +18,54 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: MyColors.primary,
       appBar: AppBar(),
-      body: WaveBackground(
-        firstColor: MyColors.primary,
-        child: Padding(
-          padding: MyDimensions.paddingAll,
-          child: Form(
-            key: formKey,
+      body: Padding(
+        padding: AppDimensions.paddingAll,
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Image.asset(
+                  'assets/images/login_logo.png',
+                  width: MediaQuery.of(context).size.width * .5,
+                  height: MediaQuery.of(context).size.height * .2,
+                  fit: BoxFit.contain,
+                ),
                 Text(
-                  'Create \naccount!'.capitalizeAllWord(),
-                  style: Theme.of(context).textTheme.headline1,
+                  'Let\'s Get Started!'.capitalizeAllWord(),
+                  style: textTheme.headline1,
                 ),
-                const Spacer(),
+                AppDimensions.vSpacingS,
+                Text(
+                  'Create your new account',
+                  style: textTheme.subtitle2,
+                ),
+                AppDimensions.vSpacing,
                 const MyTextField(
-                  hint: 'Student Name',
-                  prefixIcon: Icon(Icons.person_outline),
+                  hint: 'Username',
+                  prefixIcon: Icon(Icons.account_box),
+                  suffixIcon: Icon(Icons.check),
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
                 const MyTextField(
                   hint: 'Student ID',
                   prefixIcon: Icon(Icons.person_outline),
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
                 MyTextField(
                   hint: 'Student Mail',
                   prefixIcon: const Icon(Icons.person_outline),
-                  validator: MyValidators.validateEmail(),
+                  validator: AppValidators.validateEmail(),
                 ),
-                MyDimensions.vSpacing,
-                const PasswordField(),
-                MyDimensions.vSpacing,
-                const PasswordField(),
-                MyDimensions.vSpacing,
-                MyButtons.primary(
+                AppDimensions.vSpacing,
+                const AppPasswordField(),
+                AppDimensions.vSpacing,
+                const AppPasswordField(hint: 'Confirm Password'),
+                AppDimensions.vSpacing,
+                AppPrimaryButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       Get.to(MyRoutes.homeScreen);
@@ -65,15 +74,19 @@ class SignUpScreen extends StatelessWidget {
                   },
                   child: const Text('Sign Up'),
                 ),
-                const MyScreenDivider(text: 'or'),
-                MyButtons.secondary(
-                  onPressed: () {
-                    Get.to(MyRoutes.loginScreen);
-                    // Get.to(() => MyRoutes.loginScreen);
-                  },
-                  child: const Text('Log in'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Already have an account?'),
+                    TextButton(
+                      onPressed: () {
+                        AppRouter.goTo(context, MyRoutes.loginScreen);
+                      },
+                      child: const Text('Log in'),
+                    ),
+                  ],
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
               ],
             ),
           ),

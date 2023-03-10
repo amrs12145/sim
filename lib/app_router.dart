@@ -1,3 +1,24 @@
+import 'package:flutter/material.dart';
+
+class AppRouter {
+  static goTo(BuildContext context, Widget widget) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return widget;
+        },
+      ),
+    );
+  }
+
+  pop(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+}
+
+
+
+
 
 // import 'package:breaking_bad_app/business_logic/characters_cubit.dart';
 // import 'package:breaking_bad_app/constants/strings.dart';

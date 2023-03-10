@@ -8,7 +8,7 @@ import 'package:sim/presentation/widgets/input_field.dart';
 import 'package:sim/presentation/widgets/wave_background.dart';
 import 'package:sim/routes.dart';
 
-import '../../../buisness_logic/validators.dart';
+import '../../../core/validators.dart';
 
 class ResetScreen extends StatelessWidget {
   const ResetScreen({super.key});
@@ -17,12 +17,12 @@ class ResetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: MyColors.primary,
+      backgroundColor: AppColors.primary,
       appBar: AppBar(),
       body: WaveBackground(
-        firstColor: MyColors.primary,
+        firstColor: AppColors.primary,
         child: Padding(
-          padding: MyDimensions.paddingAll,
+          padding: AppDimensions.paddingAll,
           child: Form(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class ResetScreen extends StatelessWidget {
                   'Reset your \npassword'.capitalizeAllWord(),
                   style: Theme.of(context).textTheme.headline1,
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
                 const Text(
                   'Enter the email address associated\nwith your account',
                 ),
@@ -40,21 +40,21 @@ class ResetScreen extends StatelessWidget {
                   'Email address'.capitalizeAllWord(),
                   style: Theme.of(context).textTheme.headline2,
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
                 MyTextField(
                   hint: 'example@abc.com',
                   prefixIcon: const Icon(Icons.email),
                   suffixIcon: const Icon(Icons.check),
-                  validator: MyValidators.validateEmail(),
+                  validator: AppValidators.validateEmail(),
                 ),
-                MyDimensions.vSpacing,
-                MyButtons.primary(
+                AppDimensions.vSpacing,
+                AppPrimaryButton(
                   onPressed: () {
                     Get.to(MyRoutes.verificationScreen);
                   },
                   child: const Text('Send code'),
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -73,7 +73,7 @@ class ResetScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                MyDimensions.vSpacing,
+                AppDimensions.vSpacing,
               ],
             ),
           ),
