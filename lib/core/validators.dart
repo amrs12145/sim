@@ -1,4 +1,4 @@
-class MyValidators {
+class AppValidators {
   static String? Function(String?)? validateEmail() {
     return (text) {
       return (text == null || text.isEmpty)

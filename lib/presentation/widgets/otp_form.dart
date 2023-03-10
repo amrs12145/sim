@@ -20,7 +20,7 @@ class MyOTPForm extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: MyColors.primary,
+                  color: AppColors.primary,
                 ),
                 onChanged: (value) {
                   value.length == 1
@@ -41,16 +41,16 @@ class MyOTPForm extends StatelessWidget {
                   hintText: '0',
                   hintStyle: TextStyle(color: Colors.grey),
                   filled: true,
-                  fillColor: MyColors.onPrimary,
+                  fillColor: AppColors.onPrimary,
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: MyDimensions.borderAll,
+                    borderRadius: AppDimensions.borderRadius,
                     borderSide: BorderSide(
                       color: Colors.lightBlueAccent,
                       width: 2,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: MyDimensions.borderAll,
+                    borderRadius: AppDimensions.borderRadius,
                     borderSide: BorderSide(
                       color: Colors.grey,
                       width: 2,

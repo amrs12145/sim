@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sim/constants/dimensions.dart';
 
 class MyTextField extends StatelessWidget {
   final Widget? prefixIcon;
@@ -27,11 +28,17 @@ class MyTextField extends StatelessWidget {
       keyboardType: keyboardType,
       maxLength: maxLength,
       obscureText: obscureText,
+      style: const TextStyle(
+        color: Colors.black,
+      ),
       decoration: InputDecoration(
         // prefixIcon: prefixIcon,
-        icon: prefixIcon,
+        prefixIcon: prefixIcon,
         hintText: hint,
         suffixIcon: suffixIcon,
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(26)),
+        ),
       ),
     );
   }

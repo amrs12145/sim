@@ -16,12 +16,12 @@ class NewPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: MyColors.primary,
+      backgroundColor: AppColors.primary,
       appBar: AppBar(),
       body: WaveBackground(
-        firstColor: MyColors.primary,
+        firstColor: AppColors.primary,
         child: Padding(
-          padding: MyDimensions.paddingAll,
+          padding: AppDimensions.paddingAll,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,22 +30,22 @@ class NewPasswordScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline1,
               ),
               const Spacer(),
-              const PasswordField(),
-              MyDimensions.vSpacing,
-              const PasswordField(),
-              MyDimensions.vSpacing,
-              MyButtons.primary(
+              const AppPasswordField(),
+              AppDimensions.vSpacing,
+              const AppPasswordField(),
+              AppDimensions.vSpacing,
+              AppPrimaryButton(
                 onPressed: () {},
                 child: const Text('Reset password'),
               ),
               const MyScreenDivider(text: 'or'),
-              MyButtons.secondary(
+              AppSecondaryButton(
                 onPressed: () {
                   Get.to(MyRoutes.loginScreen);
                 },
                 child: const Text('Cancel'),
               ),
-              MyDimensions.vSpacing,
+              AppDimensions.vSpacing,
             ],
           ),
         ),
