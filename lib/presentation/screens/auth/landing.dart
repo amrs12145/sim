@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/routes.dart';
 
-import '../../app_router.dart';
-import '../widgets/screen_divider.dart';
-import '../../constants/colors.dart';
-import '../../constants/dimensions.dart';
+import '../../../app_router.dart';
+import '../../widgets/screen_divider.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/dimensions.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -14,7 +15,6 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      // backgroundColor: MyColors.primary,
       body: Padding(
         padding: AppDimensions.paddingAll,
         child: Column(
@@ -23,12 +23,12 @@ class LandingScreen extends StatelessWidget {
             Image.asset(
               'assets/images/simplify_logo.png',
               width: MediaQuery.of(context).size.width * .5,
-              height: 200,
+              height: 200.h,
               fit: BoxFit.contain,
             ),
             Text(
               'Simplify Your Career',
-              style: textTheme.subtitle1,
+              style: textTheme.titleMedium,
             ),
             const Spacer(),
             AppPrimaryButton(

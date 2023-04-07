@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
 
@@ -10,17 +11,17 @@ class MyOTPForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           for (int i = 0; i < 4; i++) ...{
             SizedBox(
-              height: 68,
-              width: 64,
+              height: 60.sp,
+              width: 60.sp,
               child: TextFormField(
-                style: const TextStyle(
-                  fontSize: 18,
+                style:  TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
+                  color: Colors.white,
                 ),
                 onChanged: (value) {
                   value.length == 1
@@ -37,22 +38,22 @@ class MyOTPForm extends StatelessWidget {
                 autofocus: i == 0 ? true : false,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.lightBlueAccent.withOpacity(.1),
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   hintText: '0',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: TextStyle(color: Colors.white70),
                   filled: true,
-                  fillColor: AppColors.onPrimary,
+                  fillColor: AppColors.primary,
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: AppDimensions.borderRadius,
+                    borderRadius: AppDimensions.borderRadiusS,
                     borderSide: BorderSide(
-                      color: Colors.lightBlueAccent,
+                      color: AppColors.primary,
                       width: 2,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: AppDimensions.borderRadius,
+                    borderRadius: AppDimensions.borderRadiusS,
                     borderSide: BorderSide(
-                      color: Colors.grey,
+                      color: AppColors.primary,
                       width: 2,
                     ),
                   ),

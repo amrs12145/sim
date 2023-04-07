@@ -5,12 +5,12 @@ import 'package:sim/core/extensions.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/presentation/widgets/password_field.dart';
 import 'package:sim/routes.dart';
-import '../../app_router.dart';
-import '../../constants/dimensions.dart';
+import '../../../app_router.dart';
+import '../../../constants/dimensions.dart';
 
-import '../../constants/colors.dart';
-import '../widgets/input_field.dart';
-import '../widgets/screen_divider.dart';
+import '../../../constants/colors.dart';
+import '../../widgets/input_field.dart';
+import '../../widgets/screen_divider.dart';
 
 class SignUpScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -57,7 +57,7 @@ class SignUpScreen extends StatelessWidget {
                 AppDimensions.vSpacing,
                 MyTextField(
                   hint: 'Student Mail',
-                  prefixIcon: const Icon(Icons.person_outline),
+                  prefixIcon: const Icon(Icons.mail_outlined),
                   validator: AppValidators.validateEmail(),
                 ),
                 AppDimensions.vSpacing,
@@ -68,7 +68,7 @@ class SignUpScreen extends StatelessWidget {
                 AppPrimaryButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      Get.to(MyRoutes.homeScreen);
+                      Get.to(MyRoutes.landingScreen);
                       // Get.to(() => MyRoutes.homeScreen);
                     }
                   },

@@ -1,53 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
 import 'package:sim/core/extensions.dart';
 import 'package:sim/routes.dart';
 
+import '../../../app_router.dart';
+import '../../widgets/buttons.dart';
 import '../../widgets/otp_form.dart';
+import '../../widgets/timer.dart';
 
 class VerificationScreen extends StatelessWidget {
   const VerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.primary,
       appBar: AppBar(),
       body: Padding(
         padding: AppDimensions.paddingAll,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: Image.asset(
+                'assets/images/login_logo.png',
+                width: MediaQuery.of(context).size.width * .5,
+                height: MediaQuery.of(context).size.height * .2,
+                fit: BoxFit.contain,
+              ),
+            ),
             Text(
               'Enter verification \ncode'.capitalizeAllWord(),
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.displayLarge,
+              textAlign: TextAlign.center,
             ),
-            AppDimensions.vSpacing,
-            const Text('We \'ve sent  the verification code\nto your email.'),
+            AppDimensions.vSpacingS,
+            Text(
+              'We \'ve sent  the verification code\nto your email.',
+              style: textTheme.titleSmall,
+              textAlign: TextAlign.center,
+            ),
             AppDimensions.vSpacing,
             const MyOTPForm(),
             const Spacer(),
             AppDimensions.vSpacing,
-            ElevatedButton(
+            AppPrimaryButton(
               onPressed: () {
-                Get.to(MyRoutes.newPasswordScreen);
+                AppRouter.goTo(context, MyRoutes.resetPasswordScreen);
               },
-              style: ElevatedButton.styleFrom(
-                side: const BorderSide(color: AppColors.onPrimary),
-                foregroundColor: AppColors.primary,
-              ),
               child: const Text('Verify'),
+              fixedSize:  Size(153.0.w, 48.0.h),
             ),
             AppDimensions.vSpacing,
             Center(
-              child: TextButton(
-                onPressed: () {},
-                // TODO: To add countdown timer widget
-                child: const Text('Resend code after 1:33'),
-              ),
+              child: ResendCodeButton(),
             ),
             AppDimensions.vSpacing,
             Center(
