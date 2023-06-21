@@ -21,3 +21,8 @@ extension StringExtension on String {
     return result;
   }
 }
+
+extension DateExtension on DateTime {
+  String get md =>
+      'June 28th'; //TODO: to search for the specific date format syntax
+}

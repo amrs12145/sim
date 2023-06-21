@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ResendCodeButton extends StatefulWidget {
   const ResendCodeButton({Key? key}) : super(key: key);
@@ -42,13 +41,16 @@ class _ResendCodeButtonState extends State<ResendCodeButton> {
   Widget build(BuildContext context) {
     return Center(
       child: TextButton(
-        onPressed: _secondsRemaining > 0 ? null : () {
-          _secondsRemaining = 90;
-          _startTimer();
-          // TODO: Implement resend code functionality
-        },
+        onPressed: _secondsRemaining > 0
+            ? null
+            : () {
+                _secondsRemaining = 90;
+                _startTimer();
+                // TODO: Implement resend code functionality
+              },
         child: _secondsRemaining > 0
-            ? Text('Resend code after ${_secondsRemaining ~/ 60}:${_secondsRemaining % 60}')
+            ? Text(
+                'Resend code after ${_secondsRemaining ~/ 60}:${_secondsRemaining % 60}')
             : const Text('Resend code'),
       ),
     );

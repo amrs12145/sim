@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class MyScreenDivider extends StatelessWidget {
+class AppScreenDivider extends StatelessWidget {
   final String text;
-  const MyScreenDivider({Key? key, required this.text}) : super(key: key);
+  const AppScreenDivider({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

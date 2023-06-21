@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:sim/constants/dimensions.dart';
 
-class MyTextField extends StatelessWidget {
+class AppTextField extends StatelessWidget {
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final String hint;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final String hint;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final int? maxLength;
 
-  const MyTextField({
-    super.key,
-    this.prefixIcon,
+  const AppTextField({
+    this.controller,
+    this.onChanged,
     required this.hint,
+    this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
     this.validator,
     this.keyboardType,
     this.maxLength,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // initialValue: initialValue,
+      controller: controller,
+      onChanged: onChanged,
       validator: validator,
       keyboardType: keyboardType,
       maxLength: maxLength,
@@ -33,6 +39,7 @@ class MyTextField extends StatelessWidget {
       ),
       decoration: InputDecoration(
         // prefixIcon: prefixIcon,
+
         prefixIcon: prefixIcon,
         hintText: hint,
         suffixIcon: suffixIcon,

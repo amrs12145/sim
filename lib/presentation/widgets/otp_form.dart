@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
 
-class MyOTPForm extends StatelessWidget {
-  const MyOTPForm({super.key});
+class AppOTPForm extends StatelessWidget {
+  const AppOTPForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class MyOTPForm extends StatelessWidget {
               height: 60.sp,
               width: 60.sp,
               child: TextFormField(
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -38,7 +38,7 @@ class MyOTPForm extends StatelessWidget {
                 autofocus: i == 0 ? true : false,
                 keyboardType: TextInputType.number,
                 cursorColor: Colors.lightBlueAccent.withOpacity(.1),
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   hintText: '0',
                   hintStyle: TextStyle(color: Colors.white70),
                   filled: true,

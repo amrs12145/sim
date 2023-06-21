@@ -15,11 +15,14 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.1.1
-  flutter_svg: ^1.1.6
-  get: ^4.6.5
+  flutter_svg:
   dio: ^5.0.1
   flutter_screenutil: ^5.7.0
-
+  shared_preferences:
+  # path_provider: 2.0.3
+  # open_filex:
+  # flutter_img:  
+   
 dev_dependencies:
   flutter_test:
     sdk: flutter

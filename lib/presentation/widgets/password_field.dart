@@ -5,7 +5,11 @@ import 'package:sim/core/extensions.dart';
 import 'input_field.dart';
 
 class AppPasswordField extends StatefulWidget {
-  const AppPasswordField({this.hint, super.key});
+  const AppPasswordField(
+      {this.controller, this.onChanged, this.hint, super.key});
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+
   final String? hint;
 
   @override
@@ -17,7 +21,9 @@ class _AppPasswordFieldState extends State<AppPasswordField> {
 
   @override
   Widget build(BuildContext context) {
-    return MyTextField(
+    return AppTextField(
+      controller: widget.controller,
+      onChanged: widget.onChanged,
       obscureText: _obscureText,
       validator: AppValidators.validatePassword(),
       prefixIcon: const Icon(Icons.lock),
