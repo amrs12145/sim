@@ -1,19 +1,30 @@
 import 'package:dio/dio.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/token.dart';
 import 'config.dart';
 import 'interceptor.dart';
 
-class callApi {
+class CallApi {
   static Dio dio = _initialize()
     ..interceptors.add(
       AppInterceptors(),
     );
 
+  static Future<void> setToken() async {
+    // final prefs = await SharedPreferences.getInstance();
+
+    // final token = prefs.getString('token') ?? '';
+
+    dio.options.headers.addAll({
+      'Authorization': 'Bearer $TOKEN',
+    });
+  }
+
   static const String _baseUrl = BASE_URL;
   static const Map<String, dynamic> _headers = {
     Headers.acceptHeader: 'application/json',
-    Headers.contentTypeHeader: 'application/json; charset=utf-8',
-    // 'Authorization': 'Bearer', //To be added when logging
+    // Headers.contentTypeHeader: 'application/json; charset=utf-8',
   };
 
   static Dio _initialize() {
@@ -46,6 +57,11 @@ class callApi {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) {
-    return dio.post(path);
+    return dio.post(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: options,
+    );
   }
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/route_manager.dart';
-import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
 import 'package:sim/core/extensions.dart';
 import 'package:sim/routes.dart';
 
-import '../../../app_router.dart';
+import '../../../app_nav.dart';
 import '../../widgets/buttons.dart';
 import '../../widgets/otp_form.dart';
 import '../../widgets/timer.dart';
@@ -22,12 +20,12 @@ class VerificationScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Padding(
-        padding: AppDimensions.paddingAll,
+        padding: AppDimensions.padding,
         child: Column(
           children: [
             Center(
               child: Image.asset(
-                'assets/images/login_logo.png',
+                'assets/images/login-logo.png',
                 width: MediaQuery.of(context).size.width * .5,
                 height: MediaQuery.of(context).size.height * .2,
                 fit: BoxFit.contain,
@@ -45,20 +43,21 @@ class VerificationScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             AppDimensions.vSpacing,
-            const MyOTPForm(),
+            const AppOTPForm(),
             const Spacer(),
             AppDimensions.vSpacing,
             AppPrimaryButton(
               onPressed: () {
-                AppRouter.goTo(context, MyRoutes.resetPasswordScreen);
+                AppNav.pushReplacement(
+                  context,
+                  AppRoutes.resetPassword,
+                );
               },
+              fixedSize: Size(153.0.w, 48.0.h),
               child: const Text('Verify'),
-              fixedSize:  Size(153.0.w, 48.0.h),
             ),
             AppDimensions.vSpacing,
-            Center(
-              child: ResendCodeButton(),
-            ),
+            const ResendCodeButton(),
             AppDimensions.vSpacing,
             Center(
               child: Text(
@@ -69,7 +68,7 @@ class VerificationScreen extends StatelessWidget {
             Center(
               child: InkWell(
                 onTap: () {
-                  Get.back();
+                  AppNav.pop(context);
                 },
                 child: Text(
                   'or Try another email address',

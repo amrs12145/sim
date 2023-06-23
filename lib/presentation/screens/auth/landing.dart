@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/routes.dart';
 
-import '../../../app_router.dart';
+import '../../../app_nav.dart';
 import '../../widgets/screen_divider.dart';
-import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
 
 class LandingScreen extends StatelessWidget {
@@ -16,12 +15,12 @@ class LandingScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Padding(
-        padding: AppDimensions.paddingAll,
+        padding: AppDimensions.padding,
         child: Column(
           children: [
             const SizedBox(height: 64.0),
             Image.asset(
-              'assets/images/simplify_logo.png',
+              'assets/images/simplify-logo.png',
               width: MediaQuery.of(context).size.width * .5,
               height: 200.h,
               fit: BoxFit.contain,
@@ -33,14 +32,14 @@ class LandingScreen extends StatelessWidget {
             const Spacer(),
             AppPrimaryButton(
               onPressed: () {
-                AppRouter.goTo(context, MyRoutes.loginScreen);
+                AppNav.push(context, AppRoutes.login);
               },
               child: const Text('Login'),
             ),
-            const MyScreenDivider(text: 'or'),
+            const AppScreenDivider(text: 'or'),
             AppPrimaryButton(
               onPressed: () {
-                AppRouter.goTo(context, MyRoutes.signUpScreen);
+                AppNav.push(context, AppRoutes.signUp);
               },
               child: const Text('Sign Up'),
             ),

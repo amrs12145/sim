@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../app_router.dart';
+import '../../../app_nav.dart';
 import '../../../constants/dimensions.dart';
 import '../../../routes.dart';
 import '../../widgets/buttons.dart';
-import '../../widgets/input_field.dart';
 import '../../widgets/password_field.dart';
-class ResetPasswordScreen extends StatelessWidget {
-  final formResetKey = GlobalKey<FormState>();
 
-   ResetPasswordScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final formResetKey = GlobalKey<FormState>();
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: AppDimensions.paddingAll,
+        padding: AppDimensions.padding,
         child: Form(
           key: formResetKey,
           child: SingleChildScrollView(
@@ -27,7 +26,7 @@ class ResetPasswordScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Image.asset(
-                    'assets/images/login_logo.png',
+                    'assets/images/login-logo.png',
                     width: MediaQuery.of(context).size.width * .5,
                     height: MediaQuery.of(context).size.height * .2,
                     fit: BoxFit.contain,
@@ -40,19 +39,20 @@ class ResetPasswordScreen extends StatelessWidget {
                 AppDimensions.vSpacing,
                 const AppPasswordField(),
                 AppDimensions.vSpacingS,
-                AppPasswordField(hint: "Confirm Password"),
+                const AppPasswordField(hint: "Confirm Password"),
                 AppDimensions.vSpacing,
                 AppPrimaryButton(
                   onPressed: () {
                     if (formResetKey.currentState!.validate()) {
-                      AppRouter.goTo(context, MyRoutes.landingScreen);
+                      AppNav.pushAndRemoveUntil(
+                        context,
+                        AppRoutes.landing,
+                      );
                     }
                   },
-                  fixedSize:  Size(153.0.w, 48.0.h),
+                  fixedSize: Size(153.0.w, 48.0.h),
                   child: const Text('Reset'),
                 ),
-
-
               ],
             ),
           ),

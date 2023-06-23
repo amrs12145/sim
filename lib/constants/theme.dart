@@ -6,27 +6,32 @@ import 'dimensions.dart';
 getMyThemeData() {
   return ThemeData(
     // primaryColor: MyColors.primary,
-    colorScheme: const ColorScheme.light(
+    colorScheme: ColorScheme.light(
       primary: AppColors.primary,
     ),
     textTheme: const TextTheme(
       headline1: TextStyle(
-        color: Colors.black,
+        color: AppColors.black,
         fontWeight: FontWeight.bold,
         fontSize: 30,
         //madetommy
       ),
       headline2: TextStyle(
-        color: Colors.black,
+        color: AppColors.black,
         fontWeight: FontWeight.w600,
-        fontSize: 30,
+        fontSize: 22,
       ),
-      subtitle1: TextStyle(
-        color: Color(0xff3B8DFE),
+      headline3: TextStyle(
+        color: AppColors.black,
+        fontWeight: FontWeight.w600,
         fontSize: 17,
       ),
+      subtitle1: TextStyle(
+        color: AppColors.white,
+        fontSize: 22,
+      ),
       subtitle2: TextStyle(
-        color: Colors.grey,
+        color: AppColors.grey,
         fontSize: 14,
       ),
       bodyText1: TextStyle(
@@ -40,13 +45,22 @@ getMyThemeData() {
       backgroundColor: Colors.transparent,
       toolbarHeight: 30.0,
     ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.onPrimary,
+    ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: AppColors.onPrimary,
         backgroundColor: AppColors.primary,
         fixedSize: const Size(double.maxFinite, 48.0),
-        shape: AppDimensions.roundBorderAll,
+        shape: AppDimensions.roundBorder,
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        shape: AppDimensions.roundBorderS,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
@@ -61,7 +75,7 @@ getMyThemeData() {
 
     inputDecorationTheme: const InputDecorationTheme(
       prefixStyle: TextStyle(),
-      fillColor: Colors.black,
+      fillColor: AppColors.black,
     ),
   );
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AppRouter {
-  static goTo(BuildContext context, Widget widget) {
-    Navigator.of(context).push(
+class AppNav {
+  static Future<T?> push<T extends Object?>(
+      BuildContext context, Widget widget) {
+    return Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
           return widget;
@@ -11,8 +12,41 @@ class AppRouter {
     );
   }
 
-  pop(BuildContext context) {
-    Navigator.of(context).pop();
+  static pushReplacement(BuildContext context, Widget widget) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) {
+          return widget;
+        },
+      ),
+    );
+  }
+
+  static pushAndRemoveUntil(BuildContext context, Widget widget) {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) {
+          return widget;
+        },
+      ),
+      ((route) => false),
+    );
+  }
+
+  static pop<T extends Object?>(BuildContext context, [T? result]) {
+    return Navigator.of(context).pop(result);
+  }
+
+  static snackBar(BuildContext context, String text) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
   }
 }
 

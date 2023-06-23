@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:sim/app_nav.dart';
 import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
 import 'package:sim/core/extensions.dart';
@@ -21,7 +21,7 @@ class NewPasswordScreen extends StatelessWidget {
       body: WaveBackground(
         firstColor: AppColors.primary,
         child: Padding(
-          padding: AppDimensions.paddingAll,
+          padding: AppDimensions.padding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,10 +38,10 @@ class NewPasswordScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('Reset password'),
               ),
-              const MyScreenDivider(text: 'or'),
+              const AppScreenDivider(text: 'or'),
               AppSecondaryButton(
                 onPressed: () {
-                  Get.to(MyRoutes.loginScreen);
+                  AppNav.push(context, AppRoutes.login);
                 },
                 child: const Text('Cancel'),
               ),

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/route_manager.dart';
-import 'package:sim/app_router.dart';
-import 'package:sim/constants/colors.dart';
+import 'package:sim/app_nav.dart';
 import 'package:sim/constants/dimensions.dart';
-import 'package:sim/core/extensions.dart';
 import 'package:sim/presentation/widgets/buttons.dart';
 import 'package:sim/presentation/widgets/input_field.dart';
-import 'package:sim/presentation/widgets/wave_background.dart';
 import 'package:sim/routes.dart';
 
 import '../../../core/validators.dart';
@@ -23,13 +19,13 @@ class ForgetPasswordScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Padding(
-        padding: AppDimensions.paddingAll,
+        padding: AppDimensions.padding,
         child: SingleChildScrollView(
           child: Column(
             children: [
               Center(
                 child: Image.asset(
-                  'assets/images/login_logo.png',
+                  'assets/images/login-logo.png',
                   width: MediaQuery.of(context).size.width * .5,
                   height: MediaQuery.of(context).size.height * .2,
                   fit: BoxFit.contain,
@@ -46,22 +42,19 @@ class ForgetPasswordScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               AppDimensions.vSpacing,
-              MyTextField(
+              AppTextField(
                 hint: 'Email Address',
                 prefixIcon: const Icon(Icons.mail_outlined),
                 validator: AppValidators.validateEmail(),
               ),
               AppDimensions.vSpacing,
-
               AppPrimaryButton(
                 onPressed: () {
-                  AppRouter.goTo(context, MyRoutes.verificationScreen);
+                  AppNav.push(context, AppRoutes.verification);
                 },
+                fixedSize: Size(153.0.w, 48.0.h),
                 child: const Text('Send Code'),
-                fixedSize:  Size(153.0.w, 48.0.h),
-
               ),
-
             ],
           ),
         ),

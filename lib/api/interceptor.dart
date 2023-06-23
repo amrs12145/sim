@@ -6,6 +6,7 @@ class AppInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     log('REQUEST[${options.method}] => PATH: ${options.baseUrl + options.path}');
+    log('RESPONSE BODY: ${options.headers}');
     super.onRequest(options, handler);
   }
 
@@ -17,8 +18,9 @@ class AppInterceptors extends Interceptor {
   }
 
   @override
-  onError(DioError err, ErrorInterceptorHandler handler) {
+  onError(DioException err, ErrorInterceptorHandler handler) {
     log('ERROR[${err.response?.statusCode}] => STATUS MESSAGE: ${err.response?.statusMessage}');
+    log('RESPONSE BODY: ${err.response}');
     super.onError(err, handler);
   }
 }

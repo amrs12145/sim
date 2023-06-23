@@ -1,31 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sim/constants/dimensions.dart';
-
 import '../../constants/colors.dart';
-
-// class MyButtons {
-//   static Widget primary({required Widget child, VoidCallback? onPressed}) {
-//     return ElevatedButton(
-//       onPressed: onPressed,
-//       style: ElevatedButton.styleFrom(
-//         backgroundColor: AppColors.primary,
-//         foregroundColor: AppColors.onPrimary,
-//       ),
-//       child: child,
-//     );
-//   }
-
-//   static Widget secondary({required Widget child, VoidCallback? onPressed}) {
-//     return ElevatedButton(
-//       onPressed: onPressed,
-//       style: ElevatedButton.styleFrom(
-//         side: const BorderSide(color: AppColors.primary),
-//         foregroundColor: AppColors.primary,
-//       ),
-//       child: child,
-//     );
-//   }
-// }
 
 class AppPrimaryButton extends StatelessWidget {
   const AppPrimaryButton({
@@ -47,7 +22,7 @@ class AppPrimaryButton extends StatelessWidget {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.onPrimary,
         fixedSize: fixedSize,
-        shape: AppDimensions.roundBorderAll,
+        shape: AppDimensions.roundBorder,
       ),
       child: child,
     );
