@@ -51,6 +51,8 @@ class AppStackedCard extends StatelessWidget {
               Image.network(
                 professor!.img?.driveLink() ??
                     'https://admissionado.com/wp-content/uploads/2016/04/college_professors_blog_post.jpg',
+                width: size.width * .4,
+                fit: BoxFit.contain,
               ),
             if (professor == null)
               WebsafeSvg.network(
@@ -133,6 +135,17 @@ class AppStackedCard extends StatelessWidget {
                 ),
               ),
             ),
+            if (course?.score != null)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Row(
+                  children: [
+                    Text(course!.score!.toStringFixed(2)),
+                    Text('Recommended'),
+                  ],
+                ),
+              ),
           ],
         ),
       ),

@@ -26,26 +26,22 @@ class _SurveyScreenState extends State<SurveyScreen> {
   void initState() {
     quizData = [
       {
-        'question': 'How much do you like field.name',
-        'answers': ['Paris', 'Berlin', 'Rome', 'Madrid'],
-      },
-      {
-        'question': 'Who painted the Mona Lisa?',
+        'question': 'How much do you like ${widget.field.name}',
         'answers': [
-          'Michelangelo',
-          'Leonardo da Vinci',
-          'Pablo Picasso',
-          'Vincent van Gogh'
+          'Not at all',
+          'Sometimes',
+          'Likely',
+          'Very Likely',
         ],
       },
       {
-        'question': 'What is the tallest mountain in the world?',
-        'answers': [
-          'Mount Kilimanjaro',
-          'Mount Everest',
-          'Mount Fuji',
-          'Matterhorn'
-        ],
+        'question':
+            'When was the last time you used ${widget.field.name} tools?',
+        'answers': ['Never', 'not often', 'a week ago', 'Today'],
+      },
+      {
+        'question': 'Do you ${widget.field.name} in your freetime?',
+        'answers': ['Never', 'Nearly no', 'not Often', 'Often'],
       },
     ];
     super.initState();
@@ -60,15 +56,17 @@ class _SurveyScreenState extends State<SurveyScreen> {
       body: Column(
         children: [
           CustomAppBar(
-            name: 'Amr',
+            name: 'Ziad',
             date: DateTime.now(),
           ),
           if (currentQuestion < quizData.length) ...[
+            AppDimensions.vSpacing,
             Text(
               quizData[currentQuestion]['question'],
+              textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 24),
             ),
-            AppDimensions.vSpacing,
+            const Spacer(),
             Column(
               children: _buildAnswerButtons(
                 quizData[currentQuestion]['answers'],
@@ -76,22 +74,24 @@ class _SurveyScreenState extends State<SurveyScreen> {
             ),
           ],
           const Spacer(),
-          ElevatedButton(
-            onPressed: () async {
-              await ProfileService.removeField(widget.field.name);
-              await QuickAlert.show(
-                context: context,
-                type: QuickAlertType.error,
-                title: widget.field.name,
-                confirmBtnColor: AppColors.danger,
-                text: 'Removed Successfully',
-              );
-              AppNav.pop(context, true);
-            },
-            child: const Text('data'),
+          Padding(
+            padding: AppDimensions.padding,
+            child: ElevatedButton(
+              onPressed: () async {
+                await ProfileService.removeField(widget.field.name);
+                await QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.error,
+                  title: widget.field.name,
+                  confirmBtnColor: AppColors.danger,
+                  text: 'Removed Successfully',
+                );
+                AppNav.pop(context, true);
+              },
+              child: const Text('Next'),
+            ),
           ),
-          AppDimensions.vSpacing,
-          AppDimensions.vSpacing,
+          AppDimensions.vSpacingS,
         ],
       ),
     );
@@ -102,7 +102,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
     for (var i = answers.length - 1; i >= 0; i--) {
       buttons.add(
         SizedBox(
-          width: 200,
+          width: 330,
           child: ElevatedButton(
             onPressed: () async {
               setState(
@@ -124,6 +124,15 @@ class _SurveyScreenState extends State<SurveyScreen> {
                 AppNav.pop(context, true);
               }
             },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: (i == 3)
+                  ? AppColors.primary
+                  : (i == 2)
+                      ? AppColors.primary.withOpacity(.8)
+                      : (i == 1)
+                          ? AppColors.primary.withOpacity(.6)
+                          : AppColors.primary.withOpacity(.3),
+            ),
             child: Text(answers[i]),
           ),
         ),
