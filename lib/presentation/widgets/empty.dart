@@ -5,6 +5,6 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Empty'));
+    return const Center(child: Text('Empty'));
   }
 }

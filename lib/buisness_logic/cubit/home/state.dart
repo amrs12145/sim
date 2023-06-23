@@ -7,9 +7,11 @@ class HomeInitial extends HomeState {}
 
 class HomeLoading extends HomeState {}
 
-class HomeFields extends HomeState {
-  HomeFields(this.fields);
+class HomeLoaded extends HomeState {
+  HomeLoaded(this.fields, this.courses, this.availableCourses);
   final List<Field> fields;
+  final List<Course> courses;
+  final List<Course> availableCourses;
 }
 
 class HomeCourses extends HomeState {

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sim/data/models/course_details.dart';
 
 import '../../api/dio.dart';
-import '../endpoints/course.dart';
+import '../endpoints/general.dart';
 import '../models/api_response.dart';
 
 class CourseService {
@@ -10,7 +10,7 @@ class CourseService {
     String courseCode,
   ) async {
     try {
-      final res = await CallApi.get('${CourseConfig.details}/$courseCode');
+      final res = await CallApi.get('${GeneralConfig.details}/$courseCode');
 
       if (res.statusCode == 200) {
         return ApiResponse<CourseDetails>.success(
@@ -20,7 +20,84 @@ class CourseService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
+      return ApiResponse.error(e.response);
+    }
+  }
+
+  static Future<ApiResponse<bool>> registerCourse(
+    int courseCode,
+    int semester,
+  ) async {
+    try {
+      final res = await CallApi.post(
+        GeneralConfig.registerCourse,
+        data: FormData.fromMap(
+          {
+            "course_code": courseCode,
+            "term": semester,
+          },
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        return ApiResponse.success(
+          res,
+          true,
+        );
+      }
+
+      return ApiResponse.error(res);
+    } on DioException catch (e) {
+      return ApiResponse.error(e.response);
+    }
+  }
+
+  static Future<ApiResponse<bool>> attachCourse(
+    int courseCode,
+    String email,
+  ) async {
+    try {
+      final res = await CallApi.post(
+        GeneralConfig.attachCourse,
+        data: FormData.fromMap(
+          {
+            "course_code": courseCode,
+            "email": email,
+          },
+        ),
+      );
+
+      if (res.statusCode == 200) {
+        return ApiResponse.success(
+          res,
+          true,
+        );
+      }
+
+      return ApiResponse.error(res);
+    } on DioException catch (e) {
+      return ApiResponse.error(e.response);
+    }
+  }
+
+  static Future<ApiResponse<bool>> toggleCourseStatus(
+    int courseCode,
+  ) async {
+    try {
+      final res = await CallApi.get(
+        '${GeneralConfig.toggleCourseStatus}/$courseCode',
+      );
+
+      if (res.statusCode == 200) {
+        return ApiResponse.success(
+          res,
+          true,
+        );
+      }
+
+      return ApiResponse.error(res);
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }

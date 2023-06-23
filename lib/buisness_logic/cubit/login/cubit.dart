@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../api/dio.dart';
+import '../../../core/token.dart';
 import '../../../data/net/users.dart';
 import '../../../data/models/user.dart';
 part 'states.dart';
@@ -30,9 +30,10 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   saveToken(String token) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+    TOKEN = token;
 
-    prefs.setString('token', token);
+    // prefs.setString('token', token);
     CallApi.setToken();
   }
 }

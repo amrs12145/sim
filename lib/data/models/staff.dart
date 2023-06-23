@@ -23,6 +23,9 @@ class Staff {
     required this.courses,
   });
 
+  static List<Staff> fromJsonList(List list) =>
+      list.map((e) => Staff.fromJson(e)).toList();
+
   factory Staff.fromJson(Map<String, dynamic> json) => Staff(
         name: json["name"],
         verboseTitle: json["verbose_title"],

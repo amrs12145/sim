@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppNav {
-  static push(BuildContext context, Widget widget) {
-    Navigator.of(context).push(
+  static Future<T?> push<T extends Object?>(
+      BuildContext context, Widget widget) {
+    return Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
           return widget;
@@ -32,8 +33,8 @@ class AppNav {
     );
   }
 
-  static pop(BuildContext context) {
-    Navigator.of(context).pop();
+  static pop<T extends Object?>(BuildContext context, [T? result]) {
+    return Navigator.of(context).pop(result);
   }
 
   static snackBar(BuildContext context, String text) {

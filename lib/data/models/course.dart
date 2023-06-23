@@ -4,9 +4,13 @@ class Course {
   int? creditHours;
   String? briefInfo;
   String? type;
-  String? status;
-  int? score;
+  String? img;
+  String? pivotStatus;
+  num? score;
+  num? pivotScore;
   String? term;
+  String? material;
+  List<Course>? prereq;
 
   Course({
     required this.courseCode,
@@ -14,9 +18,13 @@ class Course {
     required this.creditHours,
     required this.briefInfo,
     required this.type,
-    this.status,
+    this.img,
+    this.pivotStatus,
     this.score,
+    this.pivotScore,
     this.term,
+    this.material,
+    this.prereq,
   });
 
   static List<Course> fromJsonList(List list) =>
@@ -28,9 +36,15 @@ class Course {
         creditHours: json["credit_hours"],
         briefInfo: json["brief_info"],
         type: json["type"],
-        status: json["status"],
+        img: json["img"],
+        pivotStatus: json["pivot"]?["status"] ?? json["status"],
         score: json["score"],
+        pivotScore: json["pivot"]?["score"],
         term: json["term"],
+        material: json["material"],
+        prereq: json["prereq"] == null
+            ? []
+            : List<Course>.from(json["prereq"]!.map((x) => Course.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,6 +53,10 @@ class Course {
         "credit_hours": creditHours,
         "brief_info": briefInfo,
         "type": type,
-        "status": status,
+        "img": img,
+        // "status": status,
+        "material": material,
+        "prereq":
+            prereq == null ? null : prereq!.map((e) => e.toJson()).toList(),
       };
 }

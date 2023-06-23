@@ -8,8 +8,8 @@ import '../../../../constants/colors.dart';
 import '../../../../data/models/course.dart';
 import '../../courses/details/details.dart';
 
-class FinishedCoursesTab extends StatelessWidget {
-  const FinishedCoursesTab(this.courses, {super.key});
+class ActiveCoursesTab extends StatelessWidget {
+  const ActiveCoursesTab(this.courses, {super.key});
 
   final List<Course> courses;
 
@@ -18,17 +18,12 @@ class FinishedCoursesTab extends StatelessWidget {
     return GridView.count(
       padding: AppDimensions.padding,
       crossAxisCount: 2,
-      crossAxisSpacing: 30,
-      mainAxisSpacing: 20,
+      crossAxisSpacing: 20,
+      mainAxisSpacing: 10,
       children: courses
           .map(
             (e) => _AppStackedCard(
               course: e,
-              backgroundImage: WebsafeSvg.network(
-                e.img!.driveLink(),
-                height: 100,
-                fit: BoxFit.cover,
-              ),
             ),
           )
           .toList(),
@@ -39,11 +34,9 @@ class FinishedCoursesTab extends StatelessWidget {
 class _AppStackedCard extends StatelessWidget {
   const _AppStackedCard({
     required this.course,
-    required this.backgroundImage,
   });
 
   final Course course;
-  final Widget backgroundImage;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +52,10 @@ class _AppStackedCard extends StatelessWidget {
         children: [
           Positioned(
             bottom: 60,
-            child: backgroundImage,
+            child: WebsafeSvg.network(
+              course.img!.driveLink(),
+              width: 100,
+            ),
           ),
           Positioned(
             bottom: 0,
@@ -67,7 +63,7 @@ class _AppStackedCard extends StatelessWidget {
             right: 0,
             child: Container(
               width: size.width,
-              height: 60,
+              height: 55,
               padding: EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: AppDimensions.paddingUnitS,
@@ -77,23 +73,13 @@ class _AppStackedCard extends StatelessWidget {
                 borderRadius: AppDimensions.borderRadius,
               ),
               child: Text(
-                '${course.name}',
+                course.name!,
                 textAlign: TextAlign.center,
                 style: textTheme.headline3?.copyWith(
                   fontSize: 16,
                   color: AppColors.white,
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            right: 30,
-            child: Badge.count(
-              count: course.pivotScore?.toInt() ?? 0,
-              offset: const Offset(30, 0),
-              largeSize: 20,
-              textStyle: const TextStyle(fontSize: 14),
-              child: const Text('GPA', style: TextStyle(color: Colors.grey)),
             ),
           ),
         ],

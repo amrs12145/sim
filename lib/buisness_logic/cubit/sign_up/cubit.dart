@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 import '../../../data/net/users.dart';
-import '../../../data/models/user.dart';
 part 'states.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {

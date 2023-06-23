@@ -1,3 +1,5 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -17,5 +19,28 @@ class CourseDetailsCubit extends Cubit<CourseDetailsState> {
       emit(Loaded(res.dataModel!));
     else
       emit(Failed(res.message ?? 'Error'));
+  }
+
+  registerCourse(int code, int semester) async {
+    var oldState = state;
+    emit(Loading());
+    final res = await CourseService.registerCourse(code, semester);
+
+    if (res.isSuccess)
+      emit(RegisteredCourse(oldState: oldState as Loaded));
+    else
+      emit(Failed(res.message ?? 'Error'));
+  }
+
+  // Admin
+  attachCourse(int courseCode, String staffEmail) async {
+    await CourseService.attachCourse(courseCode, staffEmail);
+  }
+
+  Future<bool> toggleCourseStatus(int courseCode) async {
+    final res = await CourseService.toggleCourseStatus(courseCode);
+
+    if (res.isSuccess) return true;
+    return false;
   }
 }

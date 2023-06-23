@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/token.dart';
 import 'config.dart';
 import 'interceptor.dart';
 
@@ -11,12 +12,12 @@ class CallApi {
     );
 
   static Future<void> setToken() async {
-    final prefs = await SharedPreferences.getInstance();
+    // final prefs = await SharedPreferences.getInstance();
 
-    final token = prefs.getString('token') ?? '';
+    // final token = prefs.getString('token') ?? '';
 
     dio.options.headers.addAll({
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $TOKEN',
     });
   }
 

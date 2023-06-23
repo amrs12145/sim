@@ -13,20 +13,34 @@ part 'state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
 
-  getFields() async {
+  loadAll() async {
     emit(HomeLoading());
 
-    final res = await HomeService.loadFields();
+    final fields = await HomeService.loadFields();
+    final courses = await HomeService.loadCourses();
+    final availableCourses = await HomeService.loadAvailableCourses();
 
-    if (res.isSuccess) {
-      emit(HomeFields(res.dataModel!));
+    if (fields.isSuccess && courses.isSuccess && availableCourses.isSuccess) {
+      emit(
+        HomeLoaded(
+          fields.dataModel!,
+          courses.dataModel!,
+          availableCourses.dataModel!,
+        ),
+      );
     } else
-      emit(HomeFailed(res.message));
+      emit(
+        HomeFailed(
+          '${fields.message}'
+          '${courses.message}'
+          '${availableCourses.message}',
+        ),
+      );
   }
 
-  getCourses(String fieldName) async {
+  getFieldCourses(String fieldName) async {
     emit(HomeLoading());
-    final res = await HomeService.loadCourse(fieldName);
+    final res = await HomeService.loadFieldCourses(fieldName);
 
     if (res.isSuccess)
       emit(HomeCourses(res.dataModel!));

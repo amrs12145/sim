@@ -6,6 +6,7 @@ import 'package:sim/presentation/screens/auth/verify.dart';
 import 'package:sim/presentation/screens/home/home.dart';
 import 'package:sim/presentation/screens/profile/profile.dart';
 
+import 'presentation/screens/admin/admin.dart';
 import 'presentation/screens/auth/landing.dart';
 import 'presentation/screens/auth/login.dart';
 import 'presentation/screens/auth/sign_up.dart';
@@ -20,4 +21,5 @@ class AppRoutes {
   static const Widget resetPassword = ResetPasswordScreen();
   static const Widget home = HomeScreen();
   static const Widget profile = ProfileScreen();
+  static const Widget admin = AdminScreen();
 }

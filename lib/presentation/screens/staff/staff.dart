@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sim/core/extensions.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../../app_nav.dart';
 import '../../../buisness_logic/cubit/staff/staff_cubit.dart';
@@ -7,6 +9,7 @@ import '../../../constants/colors.dart';
 import '../../../constants/dimensions.dart';
 import '../../../data/models/course.dart';
 import '../../../data/models/staff.dart';
+import '../../widgets/expandable_card.dart';
 import '../../widgets/loading.dart';
 import '../courses/details/details.dart';
 
@@ -124,7 +127,7 @@ class _StaffScreenState extends State<StaffScreen> {
                           ),
                           AppDimensions.vSpacing,
                         ],
-                        _ExpandableCard(
+                        ExpandableCard(
                           isExpanded: true,
                           title: Text(
                             'Courses',
@@ -147,17 +150,15 @@ class _StaffScreenState extends State<StaffScreen> {
                                     ),
                                   ),
                                   subtitle: Text(e.type!),
-                                  trailing: Image.asset(
-                                      'assets/images/html-logo.png'),
+                                  trailing: WebsafeSvg.network(
+                                    e.img!.driveLink(),
+                                    width: 80,
+                                  ),
                                 ),
                               )
                               .toList(),
                         ),
                         AppDimensions.vSpacing,
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: const Text('View Material'),
-                        )
                       ],
                     ),
                   ),
@@ -167,52 +168,6 @@ class _StaffScreenState extends State<StaffScreen> {
           }
           return const Text('Error');
         },
-      ),
-    );
-  }
-}
-
-class _ExpandableCard extends StatefulWidget {
-  const _ExpandableCard(
-      {required this.title, required this.children, this.isExpanded = false});
-
-  final Widget title;
-  final List<Widget> children;
-  final bool isExpanded;
-
-  @override
-  State<_ExpandableCard> createState() => _ExpandableCardState();
-}
-
-class _ExpandableCardState extends State<_ExpandableCard> {
-  late bool _isExpanded;
-
-  @override
-  void initState() {
-    _isExpanded = widget.isExpanded;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Theme(
-        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-        child: ExpansionTile(
-          initiallyExpanded: _isExpanded,
-          onExpansionChanged: (_) {
-            setState(() => _isExpanded = !_isExpanded);
-          },
-          title: widget.title,
-          trailing: Icon(
-            _isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-            color: AppColors.primary,
-          ),
-          expandedCrossAxisAlignment: CrossAxisAlignment.start,
-          tilePadding: AppDimensions.paddingS,
-          childrenPadding: AppDimensions.padding,
-          children: widget.children,
-        ),
       ),
     );
   }
@@ -228,9 +183,9 @@ class _KAppBar extends StatelessWidget {
 
     return Container(
       height: 200,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.primary,
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage('assets/images/html-logo.png'),
           fit: BoxFit.fitHeight,
         ),

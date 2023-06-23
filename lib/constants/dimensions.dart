@@ -30,5 +30,5 @@ class AppDimensions {
   static SizedBox vSpacing = SizedBox(height: 16.0.h);
   static SizedBox vSpacingS = SizedBox(height: 4.0.h);
   static SizedBox hSpacing = SizedBox(width: 8.0.w);
-  static SizedBox hSpacingS = SizedBox(height: 4.0.w);
+  static SizedBox hSpacingS = SizedBox(width: 4.0.w);
 }

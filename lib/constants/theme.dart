@@ -6,7 +6,7 @@ import 'dimensions.dart';
 getMyThemeData() {
   return ThemeData(
     // primaryColor: MyColors.primary,
-    colorScheme: const ColorScheme.light(
+    colorScheme: ColorScheme.light(
       primary: AppColors.primary,
     ),
     textTheme: const TextTheme(
@@ -44,6 +44,10 @@ getMyThemeData() {
       foregroundColor: Colors.black,
       backgroundColor: Colors.transparent,
       toolbarHeight: 30.0,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.onPrimary,
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(

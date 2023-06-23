@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sim/app_nav.dart';
 import 'package:sim/core/extensions.dart';
-import 'package:sim/presentation/screens/profile/profile.dart';
 import 'package:sim/routes.dart';
 
 import '../../constants/colors.dart';
@@ -12,6 +11,7 @@ class CustomAppBar extends StatefulWidget {
     required this.name,
     required this.date,
     this.listOfTabs,
+    this.onPressed,
     super.key,
   });
 
@@ -21,6 +21,7 @@ class CustomAppBar extends StatefulWidget {
   /// List of [count,'Title']
   /// Example: [ [13,'Active'], [15,'Pending'], [21,'Completed'] ]
   final List<List<dynamic>>? listOfTabs;
+  final Function(int)? onPressed;
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -98,7 +99,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
       Expanded(
         child: TextButton(
           onPressed: () {
-            setState(() => _selectedTab = index);
+            setState(
+              () {
+                _selectedTab = index;
+                if (widget.onPressed != null) widget.onPressed!(_selectedTab);
+              },
+            );
           },
           style: _selectedTab == index
               ? TextButton.styleFrom(

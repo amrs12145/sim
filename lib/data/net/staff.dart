@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 
 import '../../api/dio.dart';
-import '../endpoints/course.dart';
-import '../endpoints/staff.dart';
+import '../endpoints/general.dart';
 import '../models/api_response.dart';
-import '../models/course.dart';
 import '../models/staff.dart';
 
 class StaffService {
@@ -12,7 +10,7 @@ class StaffService {
     String email,
   ) async {
     try {
-      final res = await CallApi.get('${StaffConfig.attached}/$email');
+      final res = await CallApi.get('${GeneralConfig.staffAttached}/$email');
 
       if (res.statusCode == 200) {
         return ApiResponse<Staff>.success(
@@ -22,7 +20,7 @@ class StaffService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }

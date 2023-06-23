@@ -40,19 +40,19 @@ class AppOTPForm extends StatelessWidget {
                 cursorColor: Colors.lightBlueAccent.withOpacity(.1),
                 decoration: InputDecoration(
                   hintText: '0',
-                  hintStyle: TextStyle(color: Colors.white70),
+                  hintStyle: const TextStyle(color: Colors.white70),
                   filled: true,
                   fillColor: AppColors.primary,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: AppDimensions.borderRadiusS,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: AppColors.primary,
                       width: 2,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: AppDimensions.borderRadiusS,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: AppColors.primary,
                       width: 2,
                     ),

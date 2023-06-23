@@ -5,9 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sim/app_nav.dart';
 import 'package:sim/constants/colors.dart';
 import 'package:sim/constants/dimensions.dart';
+import 'package:sim/core/extensions.dart';
 import 'package:sim/presentation/widgets/loading.dart';
+import 'package:sim/routes.dart';
 
 import '../../../buisness_logic/cubit/profile/profile_cubit.dart';
+import 'tabs/active_course.dart';
 import 'tabs/registered_courses.dart';
 import 'tabs/score.dart';
 
@@ -42,20 +45,9 @@ class _ProfileScreenState extends State<ProfileScreen>
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                AppNav.pop(context);
-              },
-            ),
-            title: Text('My Profile'),
-            centerTitle: true,
-            backgroundColor: Color.fromRGBO(204, 197, 199, 0.2),
-          ),
-          body: BlocBuilder<ProfileCubit, ProfileState>(
-            builder: (context, state) {
-              if (state is Initial) prov.getRegisteredCourses();
+          body: Builder(
+            builder: (context) {
+              if (state is Initial) prov.loadAll();
               if (state is Loading) return LoadingWidget();
 
               if (state is Loaded) {
@@ -63,123 +55,168 @@ class _ProfileScreenState extends State<ProfileScreen>
                   children: [
                     Container(
                       width: double.infinity,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      padding: EdgeInsets.only(top: 12),
+                      height: 150,
+                      padding: EdgeInsets.only(top: 36),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(204, 197, 199, 0.2),
+                        color: AppColors.grey,
                       ),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: AppDimensions.paddingS,
-                          child: CircleAvatar(
-                            radius: 45,
-                            backgroundImage:
-                                AssetImage('assets/images/male-avatar.png'),
-                          ),
-                        ),
-                      ),
-                    ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40),
-                      ),
-                      child: Container(
-                        width: double.infinity,
-                        color: Color.fromRGBO(
-                          204,
-                          197,
-                          199,
-                          0.2,
-                        ), // Change the background color here
-                        child: Column(
+                      child: Padding(
+                        padding: AppDimensions.padding,
+                        child: Row(
                           children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 2.0),
-                              child: Text(
-                                'Amr Samy',
-                                style: textTheme.subtitle1?.copyWith(
-                                  color: AppColors.black,
-                                ),
+                            IconButton(
+                              icon: Icon(Icons.arrow_back_ios),
+                              onPressed: () {
+                                AppNav.pop(context);
+                              },
+                            ),
+                            AppDimensions.hSpacing,
+                            InkWell(
+                              onTap: () {
+                                AppNav.push(context, AppRoutes.admin);
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    state.studentInfo.name,
+                                    style: textTheme.subtitle1?.copyWith(
+                                      color: AppColors.black,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        state.studentInfo.type.capitalize(),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.blue.shade900,
+                                        ),
+                                      ),
+                                      if (state.studentInfo.type == 'admin')
+                                        Icon(
+                                          Icons.add_moderator,
+                                          size: 20,
+                                          color: Colors.blue.shade900,
+                                        ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            AppDimensions.vSpacing,
+                            Spacer(),
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundImage: AssetImage(
+                                'assets/images/male-avatar.png',
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ),
-                    AppDimensions.vSpacing,
-                    Padding(
-                      padding: AppDimensions.paddingS,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: TabBar(
-                          controller: tabController,
-                          tabs: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFF2377CF),
-                              ),
-                              child: Tab(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'score',
-                                    textAlign: TextAlign.center,
+                    AppDimensions.vSpacingS,
+                    AppDimensions.vSpacingS,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: AppDimensions.borderRadiusS,
+                      ),
+                      child: TabBar(
+                        controller: tabController,
+                        onTap: (_) => setState(() {}),
+                        tabs: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: AppDimensions.borderRadiusS,
+                              color: tabController.index == 0
+                                  ? Colors.blue.shade700
+                                  : null,
+                              border: Border.all(color: Colors.blue.shade700),
+                            ),
+                            child: Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Score',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: tabController.index == 0
+                                        ? null
+                                        : Colors.blue.shade700,
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFF2377CF),
-                              ),
-                              child: Tab(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'Registered Courses',
-                                    textAlign: TextAlign.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: AppDimensions.borderRadiusS,
+                              color: tabController.index == 1
+                                  ? Colors.blue.shade700
+                                  : null,
+                              border: Border.all(color: Colors.blue.shade700),
+                            ),
+                            child: Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Passed Courses',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: tabController.index == 1
+                                        ? null
+                                        : Colors.blue.shade700,
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Color(0xFF2377CF),
-                              ),
-                              child: Tab(
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'badge',
-                                    textAlign: TextAlign.center,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: AppDimensions.borderRadiusS,
+                              color: tabController.index == 2
+                                  ? Colors.blue.shade700
+                                  : null,
+                              border: Border.all(color: Colors.blue.shade700),
+                            ),
+                            child: Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Active Courses',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: tabController.index == 2
+                                        ? null
+                                        : Colors.blue.shade700,
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                          indicatorColor: Colors.white,
-                          labelColor: Colors.white,
-                          unselectedLabelColor: Colors.white,
-                        ),
+                          ),
+                        ],
+                        indicatorColor: Colors.white,
+                        labelColor: Colors.white,
+                        unselectedLabelColor: Colors.white,
                       ),
                     ),
                     Expanded(
                       child: TabBarView(
                         controller: tabController,
                         children: [
-                          ScoreTab(3.2, 70.0),
-                          RegisteredCoursesTab(state.courses),
-                          Center(
-                            child: Text('Tab 3 Content'),
+                          ScoreTab(
+                            state.studentInfo.details,
+                          ),
+                          FinishedCoursesTab(
+                            state.courses
+                                .where((e) => e.pivotStatus == "finished")
+                                .toList(),
+                          ),
+                          ActiveCoursesTab(
+                            state.courses
+                                .where((e) => e.pivotStatus == "active")
+                                .toList(),
                           ),
                         ],
                       ),

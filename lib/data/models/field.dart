@@ -2,8 +2,9 @@ class Field {
   String? id;
   String name;
   String description;
-  String img;
+  String? img;
   int coursesRelatedCount;
+  num? progress;
 
   Field({
     required this.id,
@@ -11,6 +12,7 @@ class Field {
     required this.description,
     required this.img,
     required this.coursesRelatedCount,
+    required this.progress,
   });
 
   static List<Field> fromJsonList(List list) =>
@@ -22,7 +24,9 @@ class Field {
       name: json['name'],
       description: json['description'],
       img: json['img'],
-      coursesRelatedCount: json['courses_related_count'],
+      coursesRelatedCount:
+          json['courses_related_count'] ?? json['courses_count'],
+      progress: json['progress'],
     );
   }
 
@@ -32,5 +36,6 @@ class Field {
         'description': description,
         'img': img,
         'courses_related_count': coursesRelatedCount,
+        'progress': progress,
       };
 }

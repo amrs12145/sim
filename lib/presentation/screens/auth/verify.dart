@@ -53,11 +53,11 @@ class VerificationScreen extends StatelessWidget {
                   AppRoutes.resetPassword,
                 );
               },
-              child: const Text('Verify'),
               fixedSize: Size(153.0.w, 48.0.h),
+              child: const Text('Verify'),
             ),
             AppDimensions.vSpacing,
-            ResendCodeButton(),
+            const ResendCodeButton(),
             AppDimensions.vSpacing,
             Center(
               child: Text(

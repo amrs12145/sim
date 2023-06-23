@@ -37,7 +37,7 @@ class LoginService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }
@@ -76,7 +76,7 @@ class LoginService {
         return ApiResponse.success(res, true);
       }
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }
@@ -95,7 +95,7 @@ class LoginService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }

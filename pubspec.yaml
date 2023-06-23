@@ -7,22 +7,26 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
+  sdk: ">=3.0.3 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  flutter_bloc: ^8.1.1
-  flutter_svg:
-  dio: ^5.0.1
-  flutter_screenutil: ^5.7.0
-  shared_preferences:
-  # path_provider: 2.0.3
-  # open_filex:
-  # flutter_img:  
-   
+  cupertino_icons:
+  flutter_bloc:
+  dio:
+  flutter_screenutil:
+  # flutter_svg: 2.0.7
+  # jovial_svg: ^1.1.15
+  websafe_svg: ^3.0.1
+  # flutter_file_downloader: ^1.1.2
+  # cached_network_svg_image: ^0.0.7
+  quickalert:
+  # shared_preferences:
+  # image_loader: 
+  webview_flutter: ^4.2.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

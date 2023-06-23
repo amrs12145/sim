@@ -6,7 +6,7 @@ import '../../api/dio.dart';
 import '../models/api_response.dart';
 
 class HomeService {
-  static Future<ApiResponse<List<Field>>> loadFields<T>() async {
+  static Future<ApiResponse<List<Field>>> loadFields() async {
     try {
       final res = await CallApi.get(HomeConfig.fields);
 
@@ -18,16 +18,14 @@ class HomeService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }
 
-  static Future<ApiResponse<List<Course>>> loadCourse<T>(
-    String fieldName,
-  ) async {
+  static Future<ApiResponse<List<Course>>> loadCourses() async {
     try {
-      final res = await CallApi.get(HomeConfig.courses + '$fieldName');
+      final res = await CallApi.get(HomeConfig.courses);
 
       if (res.statusCode == 200) {
         return ApiResponse<List<Course>>.success(
@@ -37,7 +35,43 @@ class HomeService {
       }
 
       return ApiResponse.error(res);
-    } on DioError catch (e) {
+    } on DioException catch (e) {
+      return ApiResponse.error(e.response);
+    }
+  }
+
+  static Future<ApiResponse<List<Course>>> loadAvailableCourses() async {
+    try {
+      final res = await CallApi.get(HomeConfig.availableCourses);
+
+      if (res.statusCode == 200) {
+        return ApiResponse<List<Course>>.success(
+          res,
+          Course.fromJsonList(res.data["data"]),
+        );
+      }
+
+      return ApiResponse.error(res);
+    } on DioException catch (e) {
+      return ApiResponse.error(e.response);
+    }
+  }
+
+  static Future<ApiResponse<List<Course>>> loadFieldCourses(
+    String fieldName,
+  ) async {
+    try {
+      final res = await CallApi.get('${HomeConfig.fieldCourses}/$fieldName');
+
+      if (res.statusCode == 200) {
+        return ApiResponse<List<Course>>.success(
+          res,
+          Course.fromJsonList(res.data["data"]),
+        );
+      }
+
+      return ApiResponse.error(res);
+    } on DioException catch (e) {
       return ApiResponse.error(e.response);
     }
   }

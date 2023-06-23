@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:sim/data/net/staff.dart';
 
 import '../../../data/models/course.dart';
-import '../../../data/models/staff.dart';
 
 part 'staff_state.dart';
 

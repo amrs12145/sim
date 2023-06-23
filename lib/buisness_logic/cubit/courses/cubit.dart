@@ -13,7 +13,7 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   getCourses(String fieldName) async {
     emit(Loading());
-    final res = await HomeService.loadCourse(fieldName);
+    final res = await HomeService.loadFieldCourses(fieldName);
 
     if (res.isSuccess)
       emit(CoursesLoaded(res.dataModel!));

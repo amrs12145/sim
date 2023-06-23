@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sim/constants/colors.dart';
 
 class AppBottomBar extends StatelessWidget {
   const AppBottomBar({super.key});

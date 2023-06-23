@@ -6,6 +6,7 @@ import 'package:sim/buisness_logic/cubit/courses/cubit.dart';
 import 'package:sim/routes.dart';
 
 import 'api/dio.dart';
+import 'buisness_logic/cubit/admin/admin_cubit.dart';
 import 'buisness_logic/cubit/home/cubit.dart';
 import 'buisness_logic/cubit/login/cubit.dart';
 import 'buisness_logic/cubit/profile/profile_cubit.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         BlocProvider.value(value: SignUpCubit()),
         BlocProvider.value(value: HomeCubit()),
         BlocProvider.value(value: ProfileCubit()),
+        BlocProvider.value(value: AdminCubit()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),

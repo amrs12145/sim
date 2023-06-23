@@ -12,6 +12,12 @@ class Loaded extends CourseDetailsState {
   Loaded(this.courseDetails);
 }
 
+class RegisteredCourse extends CourseDetailsState {
+  final CourseDetails courseDetails;
+  RegisteredCourse({required Loaded oldState})
+      : courseDetails = oldState.courseDetails;
+}
+
 class Failed extends CourseDetailsState {
   final String message;
   Failed(this.message);

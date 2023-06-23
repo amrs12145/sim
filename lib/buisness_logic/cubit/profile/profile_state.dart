@@ -8,8 +8,9 @@ class Initial extends ProfileState {}
 class Loading extends ProfileState {}
 
 class Loaded extends ProfileState {
+  final StudentInfo studentInfo;
   final List<Course> courses;
-  Loaded(this.courses);
+  Loaded(this.studentInfo, this.courses);
 }
 
 class Failed extends ProfileState {
